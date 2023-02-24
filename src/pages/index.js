@@ -22,17 +22,16 @@ export default function Home() {
           </p>
           <div>
             <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+              href="https://nullplatform.com"
               target="_blank"
               rel="noopener noreferrer"
             >
-              By{' '}
               <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
+                src="/nullplatform.svg"
+                alt="Nullplatform Logo"
+                className={styles.nullplatformLogo}
+                width={130}
+                height={30}
                 priority
               />
             </a>
