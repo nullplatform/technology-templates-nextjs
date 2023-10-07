@@ -1,3 +1,13 @@
+<h2 align="center">
+    <a href="https://httpie.io" target="blank_">
+        <img height="100" alt="nullplatform" src="https://nullplatform.com/favicon/android-chrome-192x192.png" />
+    </a>
+    <br>
+    <br>
+    Technology Template for Next.js
+    <br>
+</h2>
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
