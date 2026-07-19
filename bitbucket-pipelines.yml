@@ -19,12 +19,23 @@ definitions:
         script:
           - /np build start
           # kaniko requires a --destination even with --no-push; `foo:1` is a throwaway.
+          #
+          # ${BUILD_ARGS} injects Docker build-args into the image build. On GitHub this
+          # value comes from the application's nullplatform parameters -- the
+          # get-build-parameters action exports a parameter named BUILD_ARGS into the env,
+          # and the build runs `docker build $BUILD_ARGS ...`. Bitbucket has no such
+          # action, so set BUILD_ARGS as a *secured* repository variable (same mechanism
+          # as NULLPLATFORM_API_KEY); it holds a full flag string, e.g.
+          # "--build-arg KEY=value --build-arg OTHER=value". It is left unquoted so it
+          # word-splits into separate kaniko args, and ${BUILD_ARGS:-} expands to nothing
+          # when the variable is unset -- so this line is a no-op until you define it.
           - /kaniko/executor
             --context "$BITBUCKET_CLONE_DIR"
             --dockerfile "$BITBUCKET_CLONE_DIR/Dockerfile"
             --no-push
             --tarPath image.tar
             --destination foo:1
+            ${BUILD_ARGS:-}
           - /np asset push --type docker-image --source image.tar
           - /np build update --status=successful
         after-script:
