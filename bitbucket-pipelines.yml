@@ -29,6 +29,11 @@ definitions:
           # "--build-arg KEY=value --build-arg OTHER=value". It is left unquoted so it
           # word-splits into separate kaniko args, and ${BUILD_ARGS:-} expands to nothing
           # when the variable is unset -- so this line is a no-op until you define it.
+          #
+          # NOTE: the serverless / node-family templates fetch application parameters
+          # directly via the np CLI (`np parameter list ... --format json | jq ...`), but
+          # this public.ecr.aws/nullplatform/np-cli:kaniko image is Alpine without jq, so
+          # here the value is supplied through the BUILD_ARGS repository variable instead.
           - /kaniko/executor
             --context "$BITBUCKET_CLONE_DIR"
             --dockerfile "$BITBUCKET_CLONE_DIR/Dockerfile"
